@@ -1,26 +1,30 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react'
 
+
 @observer
 class Item extends Component {
-    checkItem = () => {
-        //your code here
+    checkItem = (e) => {
+      this.props.store.checkItem(e.target.value)
       }
-      editItem = () => {
-        //your code here
+      editItem = (e) => {
+        let item = this.props.item.name
+        let location = prompt("Please enter new location")
+        this.props.store.editItem(item, location)
       }
-      deleteItem = () => {
-        //your code here
+      deleteItem = (e) => {
+        let item = this.props.item.name
+        this.props.store.deleteItem(item)
       }
     render() {
-        return (
-            <div className = "">
-      {/*   your code here
-            each item should be in an input checkbox
-            it should display the item name and location
-            it should have both an edit button and a delete button
-      */} 
-            </div>)
+      let item = this.props.item
+          return (
+              <div className = {item.completed ? "crossed": null}>
+                <span onClick ={this.deleteItem} >X</span>
+              <input type="checkbox" value={item.name} onClick ={this.checkItem}/> 
+                  {item.name} {item.location}
+                  <button onClick ={this.editItem}>edit</button>
+              </div>)
     }
 }
 
