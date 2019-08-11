@@ -20,7 +20,7 @@ class Item extends Component {
       let item = this.props.item
           return (
               <div className = {item.completed ? "crossed": null}>
-                <span onClick ={this.deleteItem} >X</span>
+                <button onClick ={this.deleteItem} >X</button>
               <input type="checkbox" value={item.name} onClick ={this.checkItem}/> 
                   {item.name} {item.location}
                   <button onClick ={this.editItem}>edit</button>
